@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Waste Segregation</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background-color: #111;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>AI-Based Waste Segregation System</h2>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <br><br>
+        <button type="submit">Detect Waste</button>
+    </form>
+
+    {% if output_image %}
+        <h3>Detection Result</h3>
+        <img src="{{ url_for('static', filename=output_image) }}" width="600">
+
+        <h3>Summary</h3>
+        <p>Bio Objects: {{ bio }}</p>
+        <p>Non-Bio Objects: {{ nonbio }}</p>
+    {% endif %}
+
+</body>
+</html>
